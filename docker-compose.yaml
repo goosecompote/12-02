@@ -1,0 +1,27 @@
+services:
+
+  db:
+#    image: mysql
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./sakila-db:/tmp/sakila-db
+
+## CREATE USER 'sys_temp'@'localhost' IDENTIFIED BY 'password';
+## SELECT user, host FROM mysql.user;
+## GRANT ALL PRIVILEGES ON *.* TO 'sys_temp'@'localhost';
+## FLUSH PRIVILEGES;
+## SHOW GRANTS FOR 'sys_temp'@'localhost';
+## ALTER USER 'sys_temp'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
+## CREATE DATABASE sakila;
+## mysql -u root -p sakila < sakila-schema.sql
+## mysql -u root -p sakila < sakila-data.sql
+## SHOW DATABASES;
+## USE sakila;
+## SHOW TABLES;
+## SELECT TABLE_NAME AS 'name_table', COLUMN_NAME AS 'key' FROM information_schema.KEY_COLUMN_USAGE WHERE CONSTRAINT_NAME = 'PRIMARY' AND TABLE_SCHEMA = 'sakila';

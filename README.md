@@ -13,16 +13,30 @@ ALTER USER 'sys_test'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pass
 1.7. Восстановите дамп в базу данных.  
 1.8. При работе в IDE сформируйте ER-диаграмму получившейся базы данных. При работе в командной строке используйте команду для получения всех таблиц базы данных. (скриншот)  
 Результатом работы должны быть скриншоты обозначенных заданий, а также простыня со всеми запросами.  
-## Задание 1 решение
-
-
-
-
+## Задание 1 решение  
+1.1. Поднял MySQL через Docker с помощью docker-compose  
+1.2. Установил Dbeaver поделючился к БД в контейнере  
+Выполнил в SQL консоли комманду ( CREATE USER 'sys_temp'@'localhost' IDENTIFIED BY 'password'; ) для создания пользователя  
+1.3. Выполнил в SQL консоли комманду ( SELECT User, Host FROM mysql.user; ) для просмотра списка пользователей  
+![скриншот к заданию 1.3](/pic/pic01.png)  
+1.4. Выполнил в SQL консоли комманду ( GRANT ALL PRIVILEGES ON *.* TO 'sys_temp'@'localhost'; ) для выдачи всех прав пользователю  
+1.5. Выполнил в SQL консоли комманду ( SHOW GRANTS FOR 'sys_temp'@'localhost'; ) для просмотра списка прав пользователя  
+![скриншот к заданию 1.5](/pic/pic02.png)  
+1.6. Выполнил в SQL консоли комманду ( ALTER USER 'sys_temp'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'; )  
+1.7. Восстановили дамп в БД коммандами:  
+CREATE DATABASE sakila;  
+mysql -u root -p sakila < sakila-schema.sql  
+mysql -u root -p sakila < sakila-data.sql  
+1.8. ![скриншот к заданию 1.8](/pic/pic03.png)  
 ## Задание 2  
 Составьте таблицу, используя любой текстовый редактор или Excel, в которой должно быть два столбца: в первом должны быть названия таблиц восстановленной базы, во втором названия первичных ключей этих таблиц. Пример: (скриншот/текст)  
 Название таблицы | Название первичного ключа  
 customer         | customer_id  
-## Задание 2 решение
+## Задание 2 решение  
+Выполнил в IDE MySQL workbranch ( SELECT TABLE_NAME AS 'Название таблицы', COLUMN_NAME AS 'Название первичного ключа' FROM information_schema.KEY_COLUMN_USAGE WHERE CONSTRAINT_NAME = 'PRIMARY' AND TABLE_SCHEMA = 'sakila'; )  
+Выгрузил таблицу в .csv формате  
+1.8. ![скриншот к заданию 1.8](/pic/pic04.png) 
+1.8. ![скриншот к заданию 1.8](/pic/pic05.png) 
 
 
 
